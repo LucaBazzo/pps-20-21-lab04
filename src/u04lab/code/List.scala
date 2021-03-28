@@ -40,6 +40,12 @@ object Lists extends App {
       case Nil() => Nil()
     }
 
+    def contains[A](l: List[A])(f: A => Boolean): Boolean = l match {
+      case Cons(h,_) if f(h) => true
+      case Cons(_,t) => contains(t)(f)
+      case Nil() => false
+    }
+
     def flatMap[A,B](l: List[A])(f: A => List[B]): List[B] = l match {
       case Cons(h,t) => append(f(h),flatMap(t)(f))
       case Nil() => Nil()

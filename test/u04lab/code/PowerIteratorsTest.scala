@@ -1,10 +1,9 @@
 package u04lab.code
 
-import Optionals._
-import Lists._
-import Lists.List._
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions._
+import org.junit.jupiter.api.Test
+import u04lab.code.Lists._
+import u04lab.code.Optionals._
 
 class PowerIteratorsTest {
 
@@ -22,5 +21,17 @@ class PowerIteratorsTest {
       pi.next(); // procedo in avanti per un po'..
     }
     assertEquals(Option.of(33), pi.next()); // sono arrivato a 33
+  }
+
+  @Test def testRandom(): Unit ={
+    val pi = factory.randomBooleans(4)
+    val b1 = pi.next()
+    val b2 = pi.next()
+    val b3 = pi.next()
+    val b4 = pi.next()
+    println(b1 + " "+ b2 + " "+ b3 + " "+ b4 + " ")
+    println(pi.allSoFar())
+    assertEquals(Option.empty, pi.next) //fallisce
+    assertEquals(List.Cons(true,List.Cons(false,List.Cons(true,List.Cons(false,List.Nil())))), pi.allSoFar())
   }
 }
